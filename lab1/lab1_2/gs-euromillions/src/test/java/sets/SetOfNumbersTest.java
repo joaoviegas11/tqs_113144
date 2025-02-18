@@ -58,6 +58,23 @@ public class SetOfNumbersTest {
 	}
 
 	@Test
+	@DisplayName("Testar a operação de subtração de conjuntos")
+	public void testSubtract() {
+		setA = SetOfNumbers.fromArray(new int[] {30, 40, 50});
+		setB.subtract(setA);
+		
+		assertEquals(3, setB.size());
+		assertFalse(setB.contains(30));
+		assertFalse(setB.contains(40));
+		assertFalse(setB.contains(50));
+		
+		assertTrue(setB.contains(10));
+		assertTrue(setB.contains(20));
+		assertTrue(setB.contains(60));
+	}
+	
+
+	@Test
 	public void testContains() {
 		assertTrue(setB.contains(10), "contains: expected value not found");
 		assertTrue(setB.contains(60), "contains: expected value not found");
@@ -75,8 +92,7 @@ public class SetOfNumbersTest {
     public void testHashCode() {
 		setA = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 60 });
 		setB = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 60 });
-
-
+		setC = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 61 });
         assertEquals(setA.hashCode(), setB.hashCode(), "Os hashCodes de conjuntos iguais devem ser iguais.");
         assertNotEquals(setA.hashCode(), setC.hashCode(), "Os hashCodes de conjuntos diferentes devem ser diferentes.");
     }
@@ -85,6 +101,7 @@ public class SetOfNumbersTest {
     public void testEquals() {
 		setA = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 60 });
 		setB = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 60 });
+		setC = SetOfNumbers.fromArray(new int[] { 10, 20, 30, 40, 50, 61 });
         assertTrue(setA.equals(setB), "Dois conjuntos com os mesmos elementos devem ser iguais.");
         assertFalse(setA.equals(setC), "Conjuntos diferentes não devem ser considerados iguais.");
         assertFalse(setA.equals(null), "Comparação com null deve retornar false.");

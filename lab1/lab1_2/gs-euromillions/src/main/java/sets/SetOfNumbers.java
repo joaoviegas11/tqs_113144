@@ -56,7 +56,9 @@ public class SetOfNumbers  implements Iterable<Integer> {
 	 * @return
 	 */
 	public void  subtract (SetOfNumbers subset) {
-		 //TODO: implement this method
+		for (Integer integer : subset) {
+			collection.remove(integer);
+		}
 	}
 
 
