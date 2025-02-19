@@ -1,3 +1,7 @@
+h)
+Ambos os conjuntos de testes (TqsStackTest.java) e o feito por IA (TqsStackTestIA.java) apresentam coverage de 100%.
+Ps.: Os testes TqsStackTestIA.java agora dão 86% de coverage por causa da função implementada na i).
+
 j)
 Resposta:
 Se o método popTopN for chamado com um valor maior do que o número de elementos presentes na pilha, ocorrerá uma exceção, pois pop() será chamado mais vezes do que o permitido.

@@ -40,10 +40,10 @@ public class TqsStack<T> {
     boolean isEmpty() {
         return stack.isEmpty();
     }
-    T popTopN(int n) {
-        for (int i = 0; i < n-1; i++) {
-            pop();
-        }
-        return pop();
-    }
+    // T popTopN(int n) {
+    //     for (int i = 0; i < n-1; i++) {
+    //         pop();
+    //     }
+    //     return pop();
+    // }
 }

@@ -103,18 +103,18 @@ public class TqsStackTest {
         });
     }
 
-    @Test
-    void testPopTopN() {
-        TqsStack<Integer> stack = new TqsStack<Integer>();
-        stack.push(1);
-        stack.push(2);
-        stack.push(3);
-        stack.push(4);
-        stack.push(5);
-        stack.push(6);
-        int x = stack.popTopN(5);
-        assertEquals(1, stack.size());
-        assertEquals(2, x);
-    }
+    // @Test
+    // void testPopTopN() {
+    //     TqsStack<Integer> stack = new TqsStack<Integer>();
+    //     stack.push(1);
+    //     stack.push(2);
+    //     stack.push(3);
+    //     stack.push(4);
+    //     stack.push(5);
+    //     stack.push(6);
+    //     int x = stack.popTopN(5);
+    //     assertEquals(1, stack.size());
+    //     assertEquals(2, x);
+    // }
 
 }
