@@ -3,7 +3,7 @@ package cars.service;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
+// import org.springframework.boot.test.autoconfigure.jdbc.AutoConfigureTestDatabase;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -18,8 +18,8 @@ import java.util.List;
 import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-@AutoConfigureTestDatabase
-@TestPropertySource(locations = "application-integrationtest.properties")
+// @AutoConfigureTestDatabase
+@TestPropertySource(locations = "resources/application-integrationtest.properties")
 class CarRestControllerTemplateIT {
 
     @LocalServerPort
@@ -52,7 +52,8 @@ class CarRestControllerTemplateIT {
 
         ResponseEntity<List<Car>> response = restTemplate.exchange(
                 "/api/cars", HttpMethod.GET, null,
-                new ParameterizedTypeReference<List<Car>>() {});
+                new ParameterizedTypeReference<List<Car>>() {
+                });
 
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).extracting(Car::getMaker).containsExactly("Toyota", "Honda");
@@ -64,8 +65,9 @@ class CarRestControllerTemplateIT {
         createTestCar("Honda", "Civic", "Sedan", "Gasolina"); // Deve ser retornado como substituto
         createTestCar("Ford", "Focus", "Hatchback", "Diesel"); // Não deve ser retornado
 
-        ResponseEntity<List<Car>> response = restTemplate.exchange("/api/car/" + originalCar.getCarId() 
-        + "/replacement",HttpMethod.GET, null,new ParameterizedTypeReference<List<Car>>() {});
+        ResponseEntity<List<Car>> response = restTemplate.exchange("/api/car/" + originalCar.getCarId()
+                + "/replacement", HttpMethod.GET, null, new ParameterizedTypeReference<List<Car>>() {
+                });
         assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
         assertThat(response.getBody()).hasSize(1);
         assertThat(response.getBody()).extracting(Car::getMaker).containsOnly("Honda");

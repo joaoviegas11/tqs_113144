@@ -50,8 +50,8 @@ class CarRestControllerIT {
     @Test
     void givenCars_whenFindReplacementCar_thenStatus200() throws Exception {
         Car originalCar = createTestCar("Toyota", "Corolla", "Sedan", "Gasolina");
-        createTestCar("Honda", "Civic", "Sedan", "Gasolina"); // Substituto esperado
-        createTestCar("Ford", "Focus", "Hatchback", "Diesel"); // Não deve ser substituto
+        createTestCar("Honda", "Civic", "Sedan", "Gasolina"); 
+        createTestCar("Ford", "Focus", "Hatchback", "Diesel"); 
 
         mvc.perform(get("/api/car/" + originalCar.getCarId() + "/replacement")
                 .contentType(MediaType.APPLICATION_JSON))

@@ -1,0 +1,5 @@
+c)
+O uso de uma base de dados real nos testes tem benefícios e desafios.
+Entre as vantagens, permite testar a aplicação num ambiente mais próximo da produção, garantindo que as consultas, índices e restrições funcionam corretamente. Além disso, possibilita testar transações e otimizar o desempenho com dados reais, evitando surpresas na fase de desenvolvimento.
+Por outro lado, há desvantagens. Os testes tornam-se mais lentos devido ao acesso ao disco, exigem configuração e manutenção da base de dados, e podem causar problemas de concorrência se forem executados em paralelo. Além disso, há um custo adicional se for necessário um servidor dedicado para testes.
+Para equilibrar realismo e eficiência, pode-se usar test containers para bases de dados isoladas ou combinar bases de dados em memória (como H2) para testes rápidos com uma real para testes de integração.
