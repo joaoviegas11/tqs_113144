@@ -27,7 +27,7 @@ public class C_Test {
 
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.name("search")));
+        WebElement searchBox = wait.until(ExpectedConditions.elementToBeClickable(By.className("Navbar_searchBarInput__w8FwI")));
         searchBox.click();
         searchBox.sendKeys("Harry Potter");
         searchBox.sendKeys(Keys.ENTER);
