@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Escolher Refeitório</title>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            padding: 2rem;
+            background-color: #f8f9fa;
+        }
+
+        .refectory-card {
+            border-radius: 1rem;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease-in-out;
+        }
+
+        .refectory-card:hover {
+            transform: scale(1.02);
+        }
+
+        .refectory-name {
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+
+        .btn-select {
+            border-radius: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="d-flex justify-content-center gap-3 mb-4">
+            <a href="/site/reservations/search" class="btn btn-outline-primary">Consultar Reserva</a>
+            <a href="/site/reservations/checkin" class="btn btn-outline-secondary">Check-in Funcionário</a>
+        </div>
+        <h1 class="text-center mb-5">Escolher Refeitório</h1>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            <div class="col" th:each="refectory : ${refectories}">
+                <div class="card refectory-card h-100">
+                    <div class="card-body d-flex flex-column justify-content-between">
+                        <div class="mb-3 refectory-name" th:text="${refectory.name}">Nome do Refeitório</div>
+                        <form th:action="@{/site/menus}" method="get">
+                            <input type="hidden" name="refectoryId" th:value="${refectory.id}" />
+                            <button type="submit" class="btn btn-primary w-100 btn-select">Selecionar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -17,26 +17,25 @@ import java.util.Optional;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.when;
 
-
 @ExtendWith(MockitoExtension.class)
 @MockitoSettings(strictness = Strictness.LENIENT)
 public class CarManagerServiceTest {
 
     @Mock
-    private CarRepository carRepository;   
-    
+    private CarRepository carRepository;
+
     @InjectMocks
     private CarManagerService carManagerService;
 
     @BeforeEach
     public void setUp() {
 
-        //these expectations provide an alternative to the use of the repository
+        // these expectations provide an alternative to the use of the repository
         Car car1 = new Car("Peugeot", "E-208");
         car1.setCarId(999L);
         Car car2 = new Car("Ferrari", "F80");
         Car car3 = new Car("Mercedes", "Benz");
-    
+
         List<Car> allCars = Arrays.asList(car1, car2, car3);
 
         Mockito.when(carRepository.findByCarId(999L)).thenReturn(car1);
@@ -46,9 +45,8 @@ public class CarManagerServiceTest {
         Mockito.when(carRepository.findAll()).thenReturn(allCars);
     }
 
-
     @Test
-     void whenSearchValidID_thenCarShouldBeFound() {
+    void whenSearchValidID_thenCarShouldBeFound() {
 
         Optional<Car> searchResult = carManagerService.getCarDetails(999L);
         assertThat(searchResult.isPresent()).isTrue();
@@ -56,28 +54,24 @@ public class CarManagerServiceTest {
     }
 
     @Test
-     void whenSearchInvalidName_thenCarShouldNotBeFound() {
-        Optional<Car> car=carManagerService.getCarDetails(-998L);
+    void whenSearchInvalidName_thenCarShouldNotBeFound() {
+        Optional<Car> car = carManagerService.getCarDetails(-998L);
         assertThat(car).isEmpty();
 
         verifyFindByCarIdIsCalledOnce(-998L);
     }
 
-
-
-
     @Test
-     void given3Cars_whengetAll_thenReturn3Records() {
+    void given3Cars_whengetAll_thenReturn3Records() {
         Car car1 = new Car("Peugeot", "E-208");
         Car car2 = new Car("Ferrari", "F80");
         Car car3 = new Car("Mercedes", "Benz");
-    
 
         List<Car> allCars = carManagerService.getAllCars();
-        assertThat(allCars).hasSize(3).extracting(Car::getMaker).contains(car1.getMaker(), car2.getMaker(), car3.getMaker());
+        assertThat(allCars).hasSize(3).extracting(Car::getMaker).contains(car1.getMaker(), car2.getMaker(),
+                car3.getMaker());
         verifyFindAllCarsIsCalledOnce();
     }
-
 
     @Test
     void whenSaveCar_thenCarShouldBeSaved() {
@@ -85,7 +79,7 @@ public class CarManagerServiceTest {
         car.setCarId(1002L);
 
         when(carRepository.save(Mockito.any(Car.class))).thenReturn(car);
-        
+
         Car savedCar = carManagerService.save(car);
         assertThat(savedCar).isNotNull();
         assertThat(savedCar.getMaker()).isEqualTo(car.getMaker());
@@ -93,11 +87,11 @@ public class CarManagerServiceTest {
 
         Mockito.verify(carRepository, VerificationModeFactory.times(1)).save(car);
     }
+
     private void verifyFindByCarIdIsCalledOnce(Long carId) {
         Mockito.verify(carRepository, VerificationModeFactory.times(1)).findByCarId(carId);
     }
 
-  
     private void verifyFindAllCarsIsCalledOnce() {
         Mockito.verify(carRepository, VerificationModeFactory.times(1)).findAll();
     }
