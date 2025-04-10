@@ -24,7 +24,7 @@ public class WeatherController {
     }
 
     @GetMapping("/stats")
-    public ResponseEntity<?> getWeatherStats() {
+    public ResponseEntity<Map<String,Integer>> getWeatherStats() {
         return ResponseEntity.ok(
                 Map.of("totalRequests", weatherService.getTotalRequests(),"cacheHits", weatherService.getCacheHits(),"cacheMisses", weatherService.getCacheMisses()));
     }

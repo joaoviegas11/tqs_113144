@@ -3,7 +3,7 @@ FAzer para ligar o projeto:
 docker compose --build
 
 
-Isto é para acder a bd via terminal
+Isto é para aceder a bd via terminal
 docker exec -it hw1-postgres-1 bash
 psql -U postgres -d tqs_db
 
