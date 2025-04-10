@@ -1,6 +1,6 @@
 FAzer para ligar o projeto: 
 
-docker compose --build
+docker compose up --build
 
 
 Isto é para aceder a bd via terminal
